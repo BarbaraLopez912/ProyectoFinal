@@ -4,6 +4,6 @@ from django.urls import path
 from accounts.views import registro
 
 urlpatterns = [
-    path('registro/', registro),
+    path('registro/', registro, name="Registro"),
     path('admin/', admin.site.urls),
 ]
