@@ -21,5 +21,6 @@ from BeyondGames.views import pag_principal
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('inicio/', pag_principal),
+    path('inicio/', pag_principal, name="Inicio"),
+    path('accounts/', include('accounts.urls')),
 ]
