@@ -25,7 +25,7 @@ class Publicacion(models.Model):
     console = CharField(max_length=20, choices=CONSOLE_CHOICES)
     release_date = DateField()
     category = CharField(max_length=20,choices=CATEGORY)
-    front_page = ImageField(upload_to='BeyondGames/images/',blank=False, default='/media/BeyondGames/images//no_disponible.png')
+    front_page = ImageField(upload_to='BeyondGames/images/',blank=False, default='media/BeyondGames/images/no_disponible.png')
     create_date = DateField(auto_now_add=True)
 
     def __str__(self):
