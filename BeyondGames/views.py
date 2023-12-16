@@ -1,6 +1,9 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, render,redirect
 from BeyondGames.forms import PublicacionForm
 from BeyondGames.models import Publicacion
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 def pag_principal(request):
     publicaciones= Publicacion.objects.all().order_by('-create_date')
@@ -26,3 +29,10 @@ def publicacion(request, publicacion_id):
         'publicacion': publicacion
         }
     return render (request, 'pages/publicacion.html', contexto)
+
+
+class BlogList(LoginRequiredMixin, ListView):
+    model = Publicacion
+    template_name = "lista_blogs.html"
+
+

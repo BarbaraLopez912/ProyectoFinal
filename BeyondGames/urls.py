@@ -17,12 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from BeyondGames.views import publicacion, create_publicacion, pag_principal
+from BeyondGames.views import publicacion, create_publicacion, pag_principal, BlogList
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('inicio/', pag_principal, name="Inicio"),
     path('accounts/', include('accounts.urls')),
     path('new_publicacion/',create_publicacion, name = 'publicar'),
-    path('blog/<int:publicacion_id>/', publicacion, name = 'publicacion')
+    path('blog/<int:publicacion_id>/', publicacion, name = 'publicacion'),
+    path('inicio/lista', BlogList.as_view(), name="BlogLista"),
 ]
