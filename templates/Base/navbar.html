@@ -15,15 +15,18 @@
     <div class="container">
         <a class="navbar-brand" href="{% url 'Inicio' %}">BeyondGames</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse d-flex align-items-center" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item"><a class="nav-link" href="{% url 'Inicio' %}">Inicio</a></li>
                 <li class="nav-item"><a class="nav-link" href="#!">Sobre nosotros</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'publicar' %}">Publicar</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'BlogLista' %}">Mis Publicaciones</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'Registro' %}">Registrarse</a></li>
-                <li class="nav-item"><a class="nav-link" href="/app/accounts/login/">Ingresar</a></li>
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="Logout">Salir</a></li>
+                <li class="nav-item">
+                    <form method="post" action="{% url 'Logout' %}" class="nav-item">
+                        {% csrf_token %}
+                        <button type="submit" class="btn nav-link">Salir</button>
+                    </form>
+                </li>
             </ul>
         </div>
     </div>  
