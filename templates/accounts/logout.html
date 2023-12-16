@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 
-{% block cambio %}
+
+<form method="post" action="{% url 'Logout' %}">
+    {% csrf_token %}
+</form>
+
 <h1>has salido de tu sesion</h1>
-{% endblock %}

@@ -6,25 +6,22 @@ from accounts.forms import UserRegisterForm
 
 
 def register_request(request):
-    print(f"Method: {request.method}")
-
     if request.method == "POST":
         form = UserRegisterForm(request.POST)
-
         if form.is_valid():
             form.save()
             return redirect("Inicio")
-
     form = UserRegisterForm()
     contexto={
         "form": form
     }
     return render(request, "accounts/registro.html", contexto)
 
+
+
 def login_request(request):
     if request.method == "POST":
         form = AuthenticationForm(request, data=request.POST)
-
         if form.is_valid():
             data = form.cleaned_data
 
