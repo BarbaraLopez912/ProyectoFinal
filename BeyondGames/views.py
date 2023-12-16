@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import get_object_or_404, render,redirect
 from BeyondGames.forms import PublicacionForm
 from BeyondGames.models import Publicacion
 
@@ -18,7 +18,11 @@ def create_publicacion(request):
         form = PublicacionForm()
     return render(request,'pages/nueva_publicacion.html',{'form':form})
 
-def publicacion(request):
+def publicacion(request, publicacion_id):
+    publicacion = get_object_or_404(Publicacion, pk=publicacion_id)
     publicaciones= Publicacion.objects.all()
-    contexto = {'publicaciones':publicaciones}
-    return render (request, 'pages/blog.html', contexto)
+    contexto = {
+        'publicaciones':publicaciones,
+        'publicacion': publicacion
+        }
+    return render (request, 'pages/publicacion.html', contexto)

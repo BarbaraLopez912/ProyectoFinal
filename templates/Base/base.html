@@ -25,7 +25,7 @@
                             <div class="small text-muted">{{ featured_post.create_date|date:"F j, Y" }}</div>
                             <h2 class="card-title">{{ featured_post.title }}</h2>
                             <p class="card-text">{{ featured_post.opinion }}</p>
-                            <a class="btn btn-primary" href="#!">Leer más →</a>
+                            <a class="btn btn-primary" href="{% url 'publicacion' publicacion_id=featured_post.id %}">Leer más →</a>
                         </div>
                     </div>  
                       <!-- Blog post-->
@@ -38,7 +38,7 @@
                                         <div class="small text-muted">{{ publicacion.create_date }}</div>
                                         <h2 class="card-title h4">{{ publicacion.title }}</h2>
                                         <p class="card-text">{{ publicacion.opinion }}</p>
-                                        <a class="btn btn-primary" href="#!">Leer más →</a>
+                                        <a class="btn btn-primary" href="{% url 'publicacion' publicacion_id=publicacion.id %}">Leer más →</a>
                                     </div>
                                 </div>
                             </div>
