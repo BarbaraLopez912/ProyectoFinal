@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, redirect
 from accounts.forms import UserRegisterForm
-
+from django.contrib import messages
 
 def register_request(request):
     if request.method == "POST":
@@ -11,11 +11,15 @@ def register_request(request):
         if form.is_valid():
             form.save()
             return redirect("Inicio")
-    form = UserRegisterForm()
-    contexto={
-        "form": form
-    }
+        else:
+            print(form.errors)
+            messages.error(request, "Hubo un error en el formulario. Por favor, verifica los campos.")
+    else:
+        form = UserRegisterForm()
+
+    contexto = {"form": form}
     return render(request, "accounts/registro.html", contexto)
+
 
 
 
