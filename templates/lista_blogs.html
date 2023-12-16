@@ -1,19 +1,13 @@
-{% extends "Base/navbar.html" %}
+{% include "Base/navbar.html" %}
 
-{% block cambio %}
 
-{% for publicacion in publicaciones|slice:"1:" %}
-                            <div class="col-lg-6 col-md-8 mb-4">
-                                <div class="card mb-4">
-                                    <img class="card-img-top" src="{{ publicacion.front_page.url }}" alt="..." />
-                                    <div class="card-body">
-                                        <div class="small text-muted">{{ publicacion.create_date }}</div>
-                                        <h2 class="card-title h4">{{ publicacion.title }}</h2>
-                                        <p class="card-text">{{ publicacion.opinion }}</p>
-                                        <a class="btn btn-primary" href="{% url 'publicacion' publicacion_id=publicacion.id %}">Leer más →</a>
-                                    </div>
-                                </div>
-                            </div>
-                        {% endfor %}
+{% for publicacion in object_list  %}
+        <h4>{{publicacion.title}} </h4>
+        <p class="lead mb-0">
+            Fecha: {{publicacion.create_date}}
+        </p>
 
-{% endblock %}
+        <hr>
+{% endfor %}
+
+{% include "Base/footer.html" %}

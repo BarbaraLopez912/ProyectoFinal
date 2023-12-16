@@ -25,5 +25,5 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('new_publicacion/',create_publicacion, name = 'publicar'),
     path('blog/<int:publicacion_id>/', publicacion, name = 'publicacion'),
-    path('inicio/lista', BlogList.as_view(), name="BlogLista"),
+    path('inicio/lista/', BlogList.as_view(), name="BlogLista"),
 ]

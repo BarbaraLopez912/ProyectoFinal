@@ -11,6 +11,7 @@ def pag_principal(request):
     contexto = {'publicaciones':publicaciones,'featured_post': featured_post}
     return render (request, 'Base/base.html', contexto)
 
+@login_required
 def create_publicacion(request):
     if request.method == 'POST':
         form = PublicacionForm(request.POST,request.FILES)
