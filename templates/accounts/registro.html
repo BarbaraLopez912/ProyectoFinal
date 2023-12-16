@@ -1,6 +1,36 @@
+{% include "Base/navbar.html" %}
 
-<form method="POST" action = "{% url 'Registro' %}" >
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Registrarse">
-</form>
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white text-center">¡Bienvenido! Ingresa tus datos a continuación</div>
+                <div class="card-body">
+                    <form method="POST" action="{% url 'Registro' %}">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            {{ form.username.label_tag }}
+                            {{ form.username }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.email.label_tag }}
+                            {{ form.email }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.password1.label_tag }}
+                            {{ form.password1 }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.password2.label_tag }}
+                            {{ form.password2 }}
+                        </div>
+                        <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Registrarse</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include "Base/footer.html" %}
