@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, render,redirect
-from BeyondGames.forms import PublicacionForm
+from BeyondGames.forms import PublicacionForm, BuscarBlog
 from BeyondGames.models import Publicacion
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
@@ -53,3 +53,15 @@ class BlogUpdate(LoginRequiredMixin, UpdateView):
 def sobre_nosotros(request):
     contexto={}
     return render(request, 'pages/sobre_nosotros.html', contexto)
+
+def busqueda_blog(request):
+    nombre=request.GET.get("title")
+    if nombre is not None:
+        publicaciones=Publicacion.objects.filter(title__icontains=nombre)
+    else:
+        publicaciones=[]
+    contexto={
+        "publicaciones": publicaciones,
+        "form": BuscarBlog(initial={"title": nombre})
+        }
+    return render(request, "Base/base.html", contexto)

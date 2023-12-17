@@ -10,6 +10,7 @@ Bárbara López Betancourt y Manuel Figueroa Flores, dos programadores chilenos 
 
 - Python 3.11
 - Django
+- Librería Pillow
 
 ## Instalación
 

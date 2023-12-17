@@ -13,3 +13,6 @@ class PublicacionForm(forms.ModelForm):
             'category': 'Categoría',
             'front_page':'Portada'
         }
+
+class BuscarBlog(forms.Form):
+    title=forms.CharField()

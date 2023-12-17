@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 from BeyondGames.views import publicacion, create_publicacion, pag_principal, BlogList, BlogDetalle, BlogEliminar, \
-    BlogUpdate, sobre_nosotros
+    BlogUpdate, sobre_nosotros, busqueda_blog
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,5 +30,6 @@ urlpatterns = [
     path('detalle/<int:pk>', BlogDetalle.as_view(), name="BlogDetalle"),
     path('eliminar/<int:pk>', BlogEliminar.as_view(), name="BlogEliminar"),
     path('actualizar/<int:pk>', BlogUpdate.as_view(), name="BlogUpdate"),
-    path('about/', sobre_nosotros, name="About")
+    path('about/', sobre_nosotros, name="About"),
+    path('buscar/', busqueda_blog, name="Buscar")
 ]
