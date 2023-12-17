@@ -1,0 +1,9 @@
+{% include "Base/navbar.html" %}
+
+<form method="POST">
+    {% csrf_token %}
+    Estás por eliminar la publicación "{{object.title}}", ¿Estás seguro?
+    <input type="submit" value="Eliminar">
+</form>
+
+{% include "Base/footer.html" %}

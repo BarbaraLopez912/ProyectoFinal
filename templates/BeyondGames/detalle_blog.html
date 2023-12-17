@@ -1,0 +1,13 @@
+{% include "Base/navbar.html" %}
+
+<h2> <b>{{publicacion.title}}</b></h2>
+<p>Creada el {{publicacion.create_date}}</p>
+<p>{{publicacion.front_page}}</p>
+<p>Contenido: {{publicacion.opinion}}</p>
+<p>Consola: {{publicacion.console}}</p>
+<p>Fecha de lanzamiento: {{publicacion.release_date}}</p>
+<p>Categoría: {{publicacion.category}}</p>
+<p><a href="{% url 'BlogLista' %}">Volver a la lista de Blogs</a>
+</p>
+
+{% include "Base/footer.html" %}

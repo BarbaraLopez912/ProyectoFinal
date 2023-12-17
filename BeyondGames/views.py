@@ -31,9 +31,21 @@ def publicacion(request, publicacion_id):
         }
     return render (request, 'pages/publicacion.html', contexto)
 
-
 class BlogList(LoginRequiredMixin, ListView):
     model = Publicacion
-    template_name = "lista_blogs.html"
+    template_name = "BeyondGames/lista_blogs.html"
 
+class BlogDetalle(LoginRequiredMixin, DetailView):
+    model=Publicacion
+    template_name="BeyondGames/detalle_blog.html"
 
+class BlogEliminar(LoginRequiredMixin, DeleteView):
+    model=Publicacion
+    template_name = "BeyondGames/eliminar_blog.html"
+    success_url = "/app/inicio/lista"
+
+class BlogUpdate(LoginRequiredMixin, UpdateView):
+    model = Publicacion
+    success_url = "/app/inicio/lista"
+    template_name = "pages/update_blog.html"
+    fields=["title", "opinion", "console", "release_date", "category", "front_page"]

@@ -1,0 +1,21 @@
+{% include "Base/navbar.html" %}
+
+
+{% for publicacion in object_list  %}
+        <h4>{{publicacion.title}} </h4>
+        <p class="lead mb-0">
+            Fecha: {{publicacion.create_date}}
+        </p>
+        <p>
+            <a href="{% url 'BlogDetalle' publicacion.id %}">Detalles</a>
+        </p>
+        <p>
+            <a href="{% url 'BlogEliminar' publicacion.id %}">Eliminar</a>
+        </p>
+        <p>
+            <a href="{% url 'BlogUpdate' publicacion.id %}">Actualizar</a>
+        </p>
+        <hr>
+{% endfor %}
+
+{% include "Base/footer.html" %}
