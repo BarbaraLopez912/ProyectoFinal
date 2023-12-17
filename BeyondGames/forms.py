@@ -1,5 +1,5 @@
 from django import forms
-from .models import Publicacion
+from .models import Comentario, Publicacion
 
 class PublicacionForm(forms.ModelForm):
     class Meta:
@@ -13,3 +13,8 @@ class PublicacionForm(forms.ModelForm):
             'category': 'Categoría',
             'front_page':'Portada'
         }
+
+class ComentarioForm(forms.ModelForm):
+    class Meta:
+        model= Comentario
+        fields = ['autor','texto']

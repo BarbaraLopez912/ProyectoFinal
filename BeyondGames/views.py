@@ -1,8 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, render,redirect
-from BeyondGames.forms import PublicacionForm
-from BeyondGames.models import Publicacion
+from BeyondGames.forms import ComentarioForm, PublicacionForm
+from BeyondGames.models import Comentario, Publicacion
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 def pag_principal(request):
@@ -31,6 +31,7 @@ def publicacion(request, publicacion_id):
         }
     return render (request, 'pages/publicacion.html', contexto)
 
+
 class BlogList(LoginRequiredMixin, ListView):
     model = Publicacion
     template_name = "BeyondGames/lista_blogs.html"
@@ -38,6 +39,19 @@ class BlogList(LoginRequiredMixin, ListView):
 class BlogDetalle(LoginRequiredMixin, DetailView):
     model=Publicacion
     template_name="BeyondGames/detalle_blog.html"
+
+    def get(self, request):
+        comentarios = Comentario.objects.all()
+        form = ComentarioForm()
+        return render(request, self.template_name, {'comentarios': comentarios, 'form': form})
+
+    def post(self, request):
+        form = ComentarioForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('nombre_de_tu_vista')
+        comentarios = Comentario.objects.all()
+        return render(request, self.template_name, {'comentarios': comentarios, 'form': form})
 
 class BlogEliminar(LoginRequiredMixin, DeleteView):
     model=Publicacion

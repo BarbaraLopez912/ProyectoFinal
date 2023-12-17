@@ -30,5 +30,6 @@ urlpatterns = [
     path('detalle/<int:pk>', BlogDetalle.as_view(), name="BlogDetalle"),
     path('eliminar/<int:pk>', BlogEliminar.as_view(), name="BlogEliminar"),
     path('actualizar/<int:pk>', BlogUpdate.as_view(), name="BlogUpdate"),
-    path('about/', sobre_nosotros, name="About")
+    path('about/', sobre_nosotros, name="About"),
+    path ('agregar_comentario/', BlogDetalle.as_view, name = 'agregar_comentario')
 ]
