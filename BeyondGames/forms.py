@@ -18,3 +18,5 @@ class ComentarioForm(forms.ModelForm):
     class Meta:
         model= Comentario
         fields = ['autor','texto']
+class BuscarBlog(forms.Form):
+    title=forms.CharField()

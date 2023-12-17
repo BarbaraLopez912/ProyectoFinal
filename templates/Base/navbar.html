@@ -22,6 +22,7 @@
                 <li class="nav-item"><a class="nav-link" href="{% url 'publicar' %}">Publicar</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'BlogLista' %}">Mis publicaciones</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'Registro' %}">Registrarse</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'Login' %}">Iniciar Sesión</a></li>
                 <li class="nav-item">
                     <form method="post" action="{% url 'Logout' %}" class="nav-item">
                         {% csrf_token %}
