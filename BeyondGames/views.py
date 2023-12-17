@@ -49,3 +49,7 @@ class BlogUpdate(LoginRequiredMixin, UpdateView):
     success_url = "/app/inicio/lista"
     template_name = "pages/update_blog.html"
     fields=["title", "opinion", "console", "release_date", "category", "front_page"]
+
+def sobre_nosotros(request):
+    contexto={}
+    return render(request, 'pages/sobre_nosotros.html', contexto)
