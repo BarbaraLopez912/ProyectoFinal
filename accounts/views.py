@@ -1,9 +1,11 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, redirect
-from accounts.forms import UserRegisterForm
+from accounts.forms import UserRegisterForm, UserUpdateForm
 from django.contrib import messages
+
 
 def register_request(request):
     if request.method == "POST":
@@ -44,3 +46,19 @@ def login_request(request):
         "form": form
     }
     return render(request, "accounts/login.html", contexto)
+
+@login_required
+def editar_request(request):
+    user = request.user
+    if request.method == "POST":
+
+        user.email = request.POST["email"]
+        user.last_name = request.POST["username"]
+        user.save()
+        return redirect("BlogLista")
+
+    form = UserUpdateForm(initial={"username": user.username, "email": user.email})
+    contexto={
+        "form": form
+    }
+    return render(request, "accounts/registro.html", contexto)

@@ -17,12 +17,13 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse d-flex align-items-center" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" href="{% url 'Inicio' %}">Inicio</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'About' %}">Sobre nosotros</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'publicar' %}">Publicar</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'BlogLista' %}">Mis publicaciones</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'Registro' %}">Registrarse</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'Login' %}">Iniciar Sesión</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'Inicio' %}" style="font-size: 10 px;">Inicio</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'About' %}" style="font-size: 10 px;">Sobre nosotros</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'publicar' %}" style="font-size: 10 px;">Publicar</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'BlogLista' %}" style="font-size: 10 px;">Mis publicaciones</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'Registro' %}" style="font-size: 10 px;">Registrarse</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'EditarRegistro' %}" style="font-size: 10 px;">Editar mis datos</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'Login' %}" style="font-size: 10 px;">Iniciar Sesión</a></li>
                 <li class="nav-item">
                     <form method="post" action="{% url 'Logout' %}" class="nav-item">
                         {% csrf_token %}
