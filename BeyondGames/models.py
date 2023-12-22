@@ -32,3 +32,20 @@ class Publicacion(models.Model):
 
     def __str__(self):
         return self.title
+    
+class Comentario(models.Model):
+    autor = models.CharField(max_length=255)
+    texto = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.autor} - {self.texto}"
+
+class Comentario_Anidado(models.Model):
+    parent_comment = models.ForeignKey(Comentario, related_name='comentario_anidado', on_delete=models.CASCADE)
+    autor = models.CharField(max_length=255)
+    texto = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.autor} - {self.texto}"
