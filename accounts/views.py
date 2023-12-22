@@ -3,8 +3,10 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, redirect
-from accounts.forms import UserRegisterForm, UserUpdateForm
+from accounts.forms import UserRegisterForm, UserUpdateForm, AvatarUpdateForm
 from django.contrib import messages
+
+from accounts.models import Avatar
 
 
 def register_request(request):
@@ -51,14 +53,43 @@ def login_request(request):
 def editar_request(request):
     user = request.user
     if request.method == "POST":
+        form = UserUpdateForm(request.POST)
+        if form.is_valid():
+            user.email = request.POST["email"]
+            user.username = request.POST["username"]
+            user.save()
+            return redirect("BlogLista")
 
-        user.email = request.POST["email"]
-        user.last_name = request.POST["username"]
-        user.save()
-        return redirect("BlogLista")
-
-    form = UserUpdateForm(initial={"username": user.username, "email": user.email})
+    form = UserUpdateForm(initial={"email": user.email, "username": user.username})
     contexto={
         "form": form
     }
     return render(request, "accounts/registro.html", contexto)
+
+
+@login_required
+def avatar_request(request):
+    user = request.user
+    if request.method == "POST":
+
+        form = AvatarUpdateForm(request.POST, request.FILES)
+        if form.is_valid():
+            data=form.cleaned_data
+
+            try:
+                avatar=user.avatar
+                avatar.imagen = data["imagen"]
+            except:
+                avatar=Avatar(
+                    user=user,
+                    imagen=data["imagen"]
+                )
+            avatar.save()
+
+            return redirect("BlogLista")
+    form = AvatarUpdateForm()
+    contexto={
+        "form": form
+    }
+    return render(request, "accounts/avatar.html", contexto)
+
